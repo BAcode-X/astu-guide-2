@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: astu-guide:v1
+    environment:
+      - PORT=8020
+    env_file:
+      - .env
+    ports:
+      - "8005:8020"
+    command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
+    volumes:
+      - ./staticfiles:/app/staticfiles/

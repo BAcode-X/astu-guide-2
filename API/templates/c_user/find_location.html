@@ -1,0 +1,30 @@
+{% extends 'c_user/base.html' %} {% block content %}
+
+<div class="container">
+    <form action="{% url 'find_path' %}" method="post">
+        {% csrf_token %}
+        <h2>Find the location</h2>
+
+        <label for="location-select">Where are you now?</label>
+
+        <select id="location-select" name="location">
+            <option value="">--Please choose a location--</option>
+            {% for location in all_locations %}
+            <option value="{{ location }}">{{ location }}</option>  
+            {% endfor %}
+            
+        </select>
+
+        <label for="destination-select">Choose your destination</label>
+
+        <select id="destination-select" name="destination">
+            <option value="">--Please choose a location--</option>
+            {% for location in all_locations %}
+            <option value="{{ location }}">{{ location }}</option>  
+            {% endfor %}
+        </select>
+        <input type="submit" value="Find" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock content %}

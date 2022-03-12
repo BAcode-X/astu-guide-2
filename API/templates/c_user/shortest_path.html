@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Add custom icons with Markers</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        .marker {
+            display: block;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+        }
+    </style>
+
+    <div id="map"></div>
+
+    <script>
+       
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYmFjb2RlLXgiLCJhIjoiY2wwZWFmc2J2MGg2MTNpazYyeTJkeTRveiJ9.UfkRNtuBI19ZrQcuN8OfiA';
+        const geojson = {
+            'type': 'FeatureCollection',
+            'features': [{
+                'type': 'Feature',
+                'properties': {
+                    'message': '{{ location.name}}',
+                    'iconSize': [40, 40]
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [{{ location.longitude }}, {{ location.latitude }}]
+                }
+            }, {
+                'type': 'Feature',
+                'properties': {
+                    'message': '{{ destination.name}}',
+                    'iconSize': [40, 40]
+                },
+                'geometry': {
+                    'type': 'Point',
+                    'coordinates': [{{ destination.longitude }}, {{ destination.latitude }}]
+                }
+            }]
+        };
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            center: [39.2920, 8.5636],
+            zoom: 17
+        });
+
+        // Add markers to the map.
+        var i = 0;
+        for (const marker of geojson.features) {
+            // Create a DOM element for each marker.
+            const el = document.createElement('div');
+            const width = marker.properties.iconSize[0];
+            const height = marker.properties.iconSize[1];
+            el.className = 'marker';
+            if (i == 0) {
+                el.style.backgroundImage = `url("{% static 'images/map_icon_1.png' %}")`;
+            } else {
+                el.style.backgroundImage = `url("{% static 'images/map_icon_2.png' %}")`;
+            }
+            el.style.width = `${width}px`;
+            el.style.height = `${height}px`;
+            el.style.backgroundSize = '100%';
+            i += 1;
+            el.addEventListener('click', () => {
+                window.alert(marker.properties.message);
+            });
+
+            // Add markers to the map.
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .addTo(map);
+        }
+        {% if mental %}
+        window.alert("Please see a Doctor Immediately");
+        {% endif %}
+
+
+        
+    </script>
+
+</body>
+
+</html>

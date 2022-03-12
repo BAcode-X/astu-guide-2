@@ -1,0 +1,61 @@
+{% extends 'c_user/base.html' %}
+{% block content %}
+
+{% comment %} create a question submitting form with fields title, description and tags {% endcomment %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Ask a Question</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="title" class="col-md-4 control-label">Title</label>
+                            <div class="col-md-6">
+                                <input id="title" type="text" class="form-control" name="title" value="" required autofocus>
+                                {% comment %} {% if errors.title %}
+                                    <span class="help-block">
+                                        <strong>{{ errors.title }}</strong>
+                                    </span>
+                                {% endif %} {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" class="col-md-4 control-label">Description</label>
+                            <div class="col-md-6">
+                                <textarea id="description" class="form-control" name="description" required></textarea>
+                                {% comment %} {% if errors.description %}
+                                    <span class="help-block">
+                                        <strong>{{ errors.description }}</strong>
+                                    </span>
+                                {% endif %} {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tags" class="col-md-4 control-label">Tags</label>
+                            <div class="col-md-6">
+                                <input id="tags" type="text" class="form-control" name="tags" value="" required>
+                                {% comment %} {% if errors.tags %}
+                                    <span class="help-block">
+                                        <strong>{{ errors.tags }}</strong>
+                                    </span>
+                                {% endif %} {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
