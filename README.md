@@ -1,1 +1,2 @@
-# astu-guide-2
+# astu-guide
+A website for the ASTU community
