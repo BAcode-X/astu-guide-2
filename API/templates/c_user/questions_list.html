@@ -50,7 +50,7 @@
                                     {{ question.title }}
                                 </a>
                             <!-- create view detail button on the far right side -->
-                            <a href="" class="btn btn-primary btn-sm pull-right" style="color:white; margin-bottom:2em;">View Detail</a>
+                            <a href="{% url 'q_detail' question.pk %}" class="btn btn-primary btn-sm pull-right" style="color:white; margin-bottom:2em;">View Detail</a>
                         </h4>
                     </div>
                     <div id="collapse{{forloop.counter}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">

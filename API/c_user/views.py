@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import CreateView, ListView, DetailView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -65,3 +66,7 @@ def find_location(request):
             mental = True
             return render(request, "c_user/shortest_path.html", {'all_locations': all_locations, 'location': o_instance, 'destination': clinic, 'mental': mental, 'map_box_token': map_box_token})
         return render(request, "c_user/shortest_path.html", {'location': o_instance, 'destination': d_instance, 'map_box_token': map_box_token, 'mental': mental})
+
+class QuestionDetailView(DetailView):
+    model = QuestionPost
+    template_name = "c_user/question_detail.html"

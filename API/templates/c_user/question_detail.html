@@ -1,0 +1,48 @@
+{% extends 'c_user/base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-11">
+            <h1>Questions</h1>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn btn-primary">Ask Question</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">All</button>
+                <button type="button" class="btn btn-default">Python</button>
+                <button type="button" class="btn btn-default">Java</button>
+                <button type="button" class="btn btn-default">C++</button>
+                <button type="button" class="btn btn-default">C</button>
+                <button type="button" class="btn btn-default">JavaScript</button>
+                <button type="button" class="btn btn-default">HTML</button>
+                <button type="button" class="btn btn-default">CSS</button>
+                <button type="button" class="btn btn-default">PHP</button>
+                <button type="button" class="btn btn-default">SQL</button>
+                <button type="button" class="btn btn-default">C#</button>
+                <button type="button" class="btn btn-default">C++</button>
+                <button type="button" class="btn btn-default">C</button>
+                <button type="button" class="btn btn-default">JavaScript</button>
+                <button type="button" class="btn btn-default">HTML</button>
+                <button type="button" class="btn btn-default">CSS</button>
+                <button type="button" class="btn btn-default">PHP</button>
+                <button type="button" class="btn btn-default">SQL</button>
+                <button type="button" class="btn btn-default">C#</button>
+                <button type="button" class="btn btn-default">C++</button>
+                <button type="button" class="btn btn-default">C</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.body|safe }}</p>
+    </div>
+</div
+{% endblock content %}
