@@ -1,9 +1,11 @@
+from statistics import mode
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, DetailView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import exceptions, serializers
+from django.contrib.auth.mixins import LoginRequiredMixin
 from core.models import QuestionPost, AnswerPost, Location
 from .serializers import QuestionSerializer, AnswerSerializer
 import os
@@ -70,3 +72,8 @@ def find_location(request):
 class QuestionDetailView(DetailView):
     model = QuestionPost
     template_name = "c_user/question_detail.html"
+
+
+class AskQuestion(LoginRequiredMixin,CreateView):
+    model = QuestionPost
+    template_name = "c_user/ask_question.html"
