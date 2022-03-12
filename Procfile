@@ -1,0 +1,1 @@
+web: python3 ./API/manage.py runserver 0:80
